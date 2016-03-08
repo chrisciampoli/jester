@@ -1,4 +1,5 @@
 var ContainerBuilder = require('crate-js').ContainerBuilder,
+    NameService = require('./services/NameService'),
     EventEmitter = require('events').EventEmitter,
     container = ContainerBuilder.buildFromJson({
         parameters: {
@@ -6,7 +7,8 @@ var ContainerBuilder = require('crate-js').ContainerBuilder,
             bar:               "baz" // Comments are allowed!
         },
         services: {
-            dispatcher: {module: EventEmitter}
+            dispatcher: {module: EventEmitter},
+            nameService: {module: NameService, args: ['%bar%']}
         }
     });
 
